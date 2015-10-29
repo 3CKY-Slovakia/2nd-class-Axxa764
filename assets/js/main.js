@@ -79,13 +79,31 @@ $(document).ready(function(){
     }
 });
 
+
+$(function(){
+    $.jGrowl("Welcome", {header: 'Info'});
+});
+
 /**
  * SINGLE DATE PICEKR
  */
 $(function() {
-    $( "#datepicker" ).datepicker();
+    $("#datepicker").datepicker();
+    if(document.getElementById('datepicker').value=="")
+    {
+        $.jGrowl("Choose date.", {sticky: true });
+    }
+    $("#datepicker").change(function(){ {
+            if(document.getElementById('datepicker').value!="")
+            {
+                $('.jGrowl-notification:last').trigger('jGrowl.close');
+            }
+            else{
+                $.jGrowl("Choose date.", {sticky: true });
+            }
+        }
+    });
 });
-
 /**
  * DATE RANGE DATE PICKER
  */
@@ -107,3 +125,16 @@ $(function() {
         }
     });
 });
+
+$(function() {
+    $("html").niceScroll({
+        cursorcolor:"#FFF",
+        cursorborder: "2px solid #000",
+        cursorwidth: "15px",
+        cursorradius: "10px",
+
+        touchbehavior: "true"
+
+    });
+});
+
